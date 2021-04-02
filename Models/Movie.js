@@ -10,7 +10,7 @@ let MovieSchema = new Schema({
     type: String,
     required: true,
   },
-  image: {
+  pageDetails: {
     type: String,
     required: true,
   },
@@ -20,4 +20,4 @@ let MovieSchema = new Schema({
   },
 });
 
-mongoose.model('movies', MovieSchema);
+mongoose.model('topicks', MovieSchema);

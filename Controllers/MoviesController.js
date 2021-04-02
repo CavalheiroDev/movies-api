@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 require('../Models/Movie.js');
-const Movie = mongoose.model('movies');
+const Topicks = mongoose.model('topicks');
 
 function topicksIndex(req, res, next) {
   mongoose.Promise = global.Promise;
-  mongoose.connect('mongodb://localhost/moviesTopicks',
+  mongoose.connect('mongodb://localhost/movies',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -12,15 +12,15 @@ function topicksIndex(req, res, next) {
       useCreateIndex: true
     })
     .then(() => {
-      Movie.find(null, { "_id": 0, "rank": 1, "name": 1, "image": 1 }).sort({ rank: 1 }).exec()
-        .then((movies) => {
-          res.status(200).json({
+      Topicks.find(null, { "_id": 0, "rank": 1, "name": 1, "pageDetails": 1 }).sort({ rank: 1 }).exec()
+        .then((topicks) => {
+          res.status(200).send({
             title: 'Top 100 filmes mais populares do momento',
-            movies
+            topicks
           });
         }).catch((error) => {
           console.log(error);
-          res.status(500).json('Deu pau no servidor!!');
+          res.status(500).send({ 'Alerta': 'Deu pau no servidor!!' });
         })
     })
     .catch((error) => {
