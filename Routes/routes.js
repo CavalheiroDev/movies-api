@@ -1,8 +1,8 @@
-import { Router } from 'express';
-import { topicksIndex } from '../Controllers/MoviesController';
+const express = require('express');
+const { topicksIndex } = require('../Controllers/MoviesController');
 
-const router = Router();
+const router = express.Router();
 
 router.get('/topicks', topicksIndex);
 
-export default router
+module.exports = router
